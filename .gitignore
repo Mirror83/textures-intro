@@ -1,0 +1,4 @@
+.idea/
+opengl-venv/
+venv/
+__pycache__
