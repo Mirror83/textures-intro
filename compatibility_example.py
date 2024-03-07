@@ -1,3 +1,4 @@
+import math
 import pygame as pg
 from OpenGL.GL import *
 
@@ -6,7 +7,7 @@ class CompatibilityApp:
     def __init__(self):
         pg.init()
         self.clock = pg.time.Clock()
-        self.display_size = (800, 600)
+        self.display_size = (600, 600)
         pg.display.set_mode(self.display_size, pg.OPENGL | pg.DOUBLEBUF | pg.RESIZABLE)
 
         pg.display.gl_set_attribute(pg.GL_CONTEXT_PROFILE_MASK,
@@ -20,7 +21,7 @@ class CompatibilityApp:
 
         glMatrixMode(GL_PROJECTION)
         glLoadIdentity()
-        glOrtho(0.0, 100.0, 0.0, 100.0, -1.0, 1.0)
+        glOrtho(-10.0, 10.0, -10.0, 10.0, -1.0, 1.0)
 
         glMatrixMode(GL_MODELVIEW)
         glLoadIdentity()
@@ -49,10 +50,23 @@ class CompatibilityApp:
                     self.resize(event.size[0], event.size[1])
 
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
-            self.draw_square()
+            self.draw_circle(-3,1,0,4)
             pg.display.flip()
             self.clock.tick(60)
-
+    
+    def draw_circle(self,x,y,z,r):
+        glBegin(GL_TRIANGLE_FAN)
+        glVertex3f(x,y,z)
+        
+        for i in range(41):
+            t=2*math.pi*i/40
+            glVertex3f(x+r*math.cos(t),y+r*math.sin(t),z)
+            
+        glEnd()
+        
+    
+            
+        
 
 app = CompatibilityApp()
 app.main_loop()
