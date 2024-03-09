@@ -84,5 +84,6 @@ class CompatibilityApp:
         quit()
 
 
-app = CompatibilityApp()
-app.main_loop()
+if __name__ == "__main__":
+    app = CompatibilityApp()
+    app.main_loop()
