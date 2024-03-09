@@ -1,9 +1,14 @@
-import math
+from math import cos, sin, pi
 import pygame as pg
 from OpenGL.GL import *
 
+from material import Material
+
 
 class CompatibilityApp:
+    # The number of vertices used to draw the circle
+    N = 40
+
     def __init__(self):
         pg.init()
         self.clock = pg.time.Clock()
@@ -14,6 +19,16 @@ class CompatibilityApp:
                                     pg.GL_CONTEXT_PROFILE_COMPATIBILITY)
 
         self.resize(self.display_size[0], self.display_size[1])
+
+        self.circle_attr = (-3, 1, 0, 4)
+        self.vertices = self.generate_circle_points(
+            self.circle_attr[0],
+            self.circle_attr[1],
+            self.circle_attr[2],
+            self.circle_attr[3]
+        )
+
+        self.rocket_texture = Material("textures/launch.bmp")
 
     @staticmethod
     def resize(w: int, h: int):
@@ -26,47 +41,48 @@ class CompatibilityApp:
         glMatrixMode(GL_MODELVIEW)
         glLoadIdentity()
 
-    @staticmethod
-    def draw_square():
-        glBegin(GL_POLYGON)
-        glColor3f(1.0, 0.0, 0.0)
-        glVertex3f(20.0, 20.0, 0.0)
-        glColor3f(0.0, 1.0, 0.0)
-        glVertex3f(80.0, 20.0, 0.0)
-        glColor3f(0.0, 0.0, 1.0)
-        glVertex3f(80.0, 80.0, 0.0)
-        glColor3f(1.0, 1.0, 0.0)
-        glVertex3f(20.0, 80.0, 0.0)
-        glEnd()
-        glFlush()
-
     def main_loop(self):
         while True:
             for event in pg.event.get():
                 if event.type == pg.QUIT:
-                    pg.quit()
-                    quit()
+                    self.destroy()
+
                 if event.type == pg.VIDEORESIZE:
                     self.resize(event.size[0], event.size[1])
 
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
-            self.draw_circle(-3,1,0,4)
+            self.draw_circle()
+            glFlush()
             pg.display.flip()
             self.clock.tick(60)
-    
-    def draw_circle(self,x,y,z,r):
+
+    def draw_circle(self):
         glBegin(GL_TRIANGLE_FAN)
-        glVertex3f(x,y,z)
-        
-        for i in range(41):
-            t=2*math.pi*i/40
-            glVertex3f(x+r*math.cos(t),y+r*math.sin(t),z)
-            
+        for vertex in self.vertices:
+            glTexCoord2f(vertex[3], vertex[4])
+            glVertex3f(vertex[0], vertex[1], vertex[2])
+
         glEnd()
-        
-    
-            
-        
+
+    def generate_circle_points(self, x, y, z, r):
+        vertices = []
+
+        for i in range(self.N + 1):
+            angle = 2 * pi * i / self.N
+
+            # s and t are the texture coordinates
+            s = 0.5 + 0.5 * cos(angle)
+            t = 0.5 + 0.5 * sin(angle)
+
+            vertices.append((x + r * cos(angle), y + r * sin(angle), z, s, t))
+
+        return vertices
+
+    def destroy(self):
+        self.rocket_texture.destroy()
+        pg.quit()
+        quit()
+
 
 app = CompatibilityApp()
 app.main_loop()
