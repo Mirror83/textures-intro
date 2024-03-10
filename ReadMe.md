@@ -3,6 +3,9 @@
 ## Group 14: QUESTION
 
 #### How would you set the color of OpenGl display to green and change the fill color to have texture? Do a demonstration example with the circle with parameter starting coordinates (-3,1) and radius of 4 cm and texture type of the circle of your choice ( mention in the write up what you used)
+
+
+
 ```
 what is texture
 - Texture is basically an image applied to a polygon or a mesh 
@@ -13,15 +16,17 @@ what is texture
 
 1D , 2D(what we used), 3D
 
-//attach picture
 ```
+![Alt Types of textures](./assets/texture%20types.png)
+
+
 
 ```
 Texture Size
 -square texture are better
-// refer to texture dimensions in video
 
 ```
+![Alt Types of textures ](./assets/pixel_sizes.png)
 
 ```
 Interpolation types 

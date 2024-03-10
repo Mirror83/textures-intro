@@ -1,5 +1,4 @@
 from math import cos, sin, pi
-import random
 import pygame as pg
 from OpenGL.GL import *
 
@@ -30,7 +29,7 @@ class CompatibilityApp:
             self.circle_attr[3]
         )
 
-        self.rocket_texture = Material("textures/edwin_pic.jpeg")
+        self.edwin_texture = Material("textures/edwin_pic.jpeg")
 
     @staticmethod
     def resize(w: int, h: int):
@@ -82,7 +81,7 @@ class CompatibilityApp:
         return vertices
 
     def destroy(self):
-        self.rocket_texture.destroy()
+        self.edwin_texture.destroy()
         pg.quit()
         quit()
 
