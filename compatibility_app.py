@@ -1,4 +1,5 @@
 from math import cos, sin, pi
+import random
 import pygame as pg
 from OpenGL.GL import *
 
@@ -19,7 +20,8 @@ class CompatibilityApp:
                                     pg.GL_CONTEXT_PROFILE_COMPATIBILITY)
 
         self.resize(self.display_size[0], self.display_size[1])
-
+        
+        # x, y, z, radius
         self.circle_attr = (-3, 1, 0, 4)
         self.vertices = self.generate_circle_points(
             self.circle_attr[0],
@@ -28,7 +30,7 @@ class CompatibilityApp:
             self.circle_attr[3]
         )
 
-        self.rocket_texture = Material("textures/launch.bmp")
+        self.rocket_texture = Material("textures/edwin_pic.jpeg")
 
     @staticmethod
     def resize(w: int, h: int):
@@ -59,6 +61,7 @@ class CompatibilityApp:
     def draw_circle(self):
         glBegin(GL_TRIANGLE_FAN)
         for vertex in self.vertices:
+            glColor3f(0, 1, 0)
             glTexCoord2f(vertex[3], vertex[4])
             glVertex3f(vertex[0], vertex[1], vertex[2])
 
@@ -84,6 +87,3 @@ class CompatibilityApp:
         quit()
 
 
-if __name__ == "__main__":
-    app = CompatibilityApp()
-    app.main_loop()

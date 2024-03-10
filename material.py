@@ -47,14 +47,6 @@ class Material:
         # Make it available for use in immediate (compatibility) mode
         glEnable(GL_TEXTURE_2D)
 
-    def use(self):
-        """
-        This function (as declared now) may be redundant as we have already
-        run the same line in the __init__ method
-        """
-        # Make our texture the active texture
-        glBindTexture(GL_TEXTURE_2D, self.texture)
-
     def destroy(self):
         """Delete the memory allocated for the texture"""
         glDisable(GL_TEXTURE_2D)
