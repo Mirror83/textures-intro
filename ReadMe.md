@@ -192,5 +192,5 @@ to use them in OpenGL and using Python.
 
 ## Other Material
 
-The book Computer Graphics Through OpenGL - From Theory to Experiments (3rd Edition) by Sumanta Guha was a key
+The book [Computer Graphics Through OpenGL - From Theory to Experiments (3rd Edition)](https://www.taylorfrancis.com/books/mono/10.1201/9780429464171/computer-graphics-opengl%C2%AE-sumanta-guha) by Sumanta Guha was a key
 reference
