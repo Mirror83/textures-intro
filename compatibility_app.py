@@ -18,6 +18,8 @@ class CompatibilityApp:
         pg.display.gl_set_attribute(pg.GL_CONTEXT_PROFILE_MASK,
                                     pg.GL_CONTEXT_PROFILE_COMPATIBILITY)
 
+        pg.display.set_caption("Circle with texture")
+
         self.resize(self.display_size[0], self.display_size[1])
         
         # x, y, z, radius
