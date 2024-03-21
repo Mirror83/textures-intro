@@ -46,8 +46,7 @@ your choice ( mention in the write up what you used)**
 > - Mipmaps are used for efficiently rendering textures at various distances by using scaled-down versions of the
     texture.
 
-![Min maps ](assets/minmaps.png)
-
+![Mip maps](assets/minmaps.png)
 
 ### Texture Coordinates
 
@@ -201,5 +200,66 @@ to use them in OpenGL and using Python.
 
 ## Other Material
 
-The book [Computer Graphics Through OpenGL - From Theory to Experiments (3rd Edition)](https://www.taylorfrancis.com/books/mono/10.1201/9780429464171/computer-graphics-opengl%C2%AE-sumanta-guha) by Sumanta Guha was a key
+The
+book [Computer Graphics Through OpenGL - From Theory to Experiments (3rd Edition)](https://www.taylorfrancis.com/books/mono/10.1201/9780429464171/computer-graphics-opengl%C2%AE-sumanta-guha)
+by Sumanta Guha was a key
 reference
+
+## Implementation using other libraries other than OpenGL Bindings
+
+### 1. Pillow and Tkinter
+
+Pillow does most of the heavy-lifting here. Tkinter is just used to provide a window and a canvas
+to draw the image.
+
+The code is summarized by the points below:
+
+1. Create a window
+2. Create an Image object using the original image
+3. Create a mask (a circular mask in our case)
+4. Tint the original image (in our case using the colour green)
+5. Crop the tinted image
+6. Convert the image to a form that Tkinter can display
+7. Create a Canvas and pack it into the window
+8. Draw the converted image into the canvas
+
+Now we take a close look at a few key functions
+
+#### 1. create_mask
+
+Creates a new image in and draws a circle over it using the `ImageDraw.ellipse` method
+The drawn-over image is returned as our mask
+
+#### 2. image_overlay
+
+The overlay is created by blending a new image using the original image converted
+into black and white and the colour desired (by default, green)
+
+The black and white version of the image is obtained using the
+`ImageEnhance.Colour` call with the enhance factor set to 0.
+
+#### 3. crop_image
+
+This method fits the image into the mask using `ImageOps.fit`. The centering
+is set to (0.5, 0.5)
+The line `cropped.putalpha(img_mask)` adds the alpha channel to the image.
+
+### Output
+
+![launch-python.png](output_screenshots/launch-python.png)
+![edwin-python.png](output_screenshots/edwin-python.png)
+
+### References
+
+The following StackOverflow questions and answers were used for most of the code:
+
+Create circular image PIL Tkinter - https://stackoverflow.com/questions/30602460/create-circular-image-pil-tkinter
+
+Colorize image while preserving
+transparency - https://stackoverflow.com/questions/12251896/colorize-image-while-preserving-transparency-with-pil
+
+The [Pillow documentation](https://pillow.readthedocs.io/en/stable/) was a big help in making sense of the contents
+of the above pages.
+
+
+
