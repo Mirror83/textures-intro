@@ -28,6 +28,9 @@ your choice ( mention in the write up what you used)**
 > - **GL_NEAREST:** Provides a pixelated look, as it uses the nearest texel's color.
 > - **GL_LINEAR:** Smooths out the texture by averaging the colors of nearby texels.
 
+
+![Interpolaton types](assets/interpolation_types.png)
+
 ### Texture Mapping Modes
 
 > - Different modes control how textures are applied:
@@ -36,9 +39,15 @@ your choice ( mention in the write up what you used)**
 > - **GL_CLAMP_TO_EDGE:** Stretches the edge pixels of the texture to fill the shape.
 > - **GL_CLAMP_TO_BORDER:** Fills beyond the edge with a specified border color.
 
+![Mapping modes](assets/mapping_modes.png)
+![Mapping modes](assets/mapping_modes2.png)
+
 > ### Mipmaps
 > - Mipmaps are used for efficiently rendering textures at various distances by using scaled-down versions of the
     texture.
+
+![Min maps ](assets/minmaps.png)
+
 
 ### Texture Coordinates
 
