@@ -2,7 +2,7 @@
 
 **How would you set the color of OpenGl display to green and change the fill color to have texture? Do a demonstration
 example with the circle with parameter starting coordinates (-3,1) and radius of 4 cm and texture type of the circle of
-your choice ( mention in the write up what you used)**
+your choice ( mention in the write-up what you used)**
 
 ## What is a Texture?
 
@@ -29,7 +29,7 @@ your choice ( mention in the write up what you used)**
 > - **GL_LINEAR:** Smooths out the texture by averaging the colors of nearby texels.
 
 
-![Interpolaton types](assets/interpolation_types.png)
+![Interpolation types](assets/interpolation_types.png)
 
 ### Texture Mapping Modes
 
@@ -144,9 +144,9 @@ all the vertices as required by the question. This gives a green tint to the ima
 
 Here is the green circle, without a texture:
 
-![circle.png](output_screenshots%2Fcircle.png)
+![circle.png](output_screenshots/circle.png)
 
-Here is the the output with a 1200 by 1600 JPEG image:
+Here is the output with a 1200 by 1600 JPEG image:
 
 ![Circle with 1200 by 600 image of Edwin as a texture](output_screenshots/edwin.png)
 
@@ -158,7 +158,7 @@ We can see that the image is slightly distorted. This is a consequence of
 what we mention earlier in
 the [texture size section](#texture-size).
 OpenGL is better optimized for square images whose sizes are powers of 2.
-The image here does not fit this criteria.
+The image here does not fit these criteria.
 
 Compare this with the output of a 512 by 512 image BMP image (`pg.image.convert` handles the different file formats for
 us)
@@ -179,7 +179,7 @@ event loop.
 
 ### main.py
 
-This is the entry point of the application and it just creates an instance of `CompatibilityApp` and calls the
+This is the entry point of the application, and it just creates an instance of `CompatibilityApp` and calls the
 instance's `main_loop` method.
 
 ## Links
@@ -261,5 +261,6 @@ transparency - https://stackoverflow.com/questions/12251896/colorize-image-while
 The [Pillow documentation](https://pillow.readthedocs.io/en/stable/) was a big help in making sense of the contents
 of the above pages.
 
-
-
+### 2. OpenCV
+The code also includes an implementation using [OpenCV](https://pypi.org/project/opencv-python/) which is follows
+[this YouTube video](https://www.youtube.com/watch?v=MdjrlIRF3vk).
