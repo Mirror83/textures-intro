@@ -24,6 +24,7 @@ def crop_image(img: Image, img_mask: Image) -> Image:
 
 def main():
     window = Tk()
+    window.title("Pillow + Tkinter Circular Image")
 
     space_launch_image = Image.open("../textures/launch.bmp")
 
@@ -33,10 +34,11 @@ def main():
 
     image_tk = ImageTk.PhotoImage(cropped_image)
 
-    canvas = Canvas(window, width=space_launch_image.width, height=space_launch_image.height)
+    canvas_size = (500, 500)
+    canvas = Canvas(window, width=canvas_size[0], height=canvas_size[1])
 
     canvas.pack()
-    canvas.create_image(space_launch_image.width // 2, space_launch_image.height // 2, image=image_tk)
+    canvas.create_image(canvas_size[0] // 2, canvas_size[1] // 2, image=image_tk)
 
     window.mainloop()
 
